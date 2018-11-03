@@ -13,13 +13,23 @@
   </url>
   
   <url>
-    <loc>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-08-19T17:21:41+08:00</lastmod>
+    <loc>https://blog.d0zingcat.xyz/blog/2018-10-24/</loc>
+    <lastmod>2018-11-03T19:04:17+08:00</lastmod>
   </url>
   
   <url>
-    <loc>https://blog.d0zingcat.xyz/blog/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</loc>
-    <lastmod>2018-08-04T09:16:37+08:00</lastmod>
+    <loc>https://blog.d0zingcat.xyz/blog/2018-10-18/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/links/</loc>
+    <lastmod>2018-11-03T17:12:21+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</loc>
+    <lastmod>2018-08-19T17:21:41+08:00</lastmod>
   </url>
   
   <url>
@@ -38,18 +48,8 @@
   </url>
   
   <url>
-    <loc>https://blog.d0zingcat.xyz/projects/my-project/</loc>
-    <lastmod>2018-01-23T23:47:38+08:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.d0zingcat.xyz/about/about/</loc>
+    <loc>https://blog.d0zingcat.xyz/about/</loc>
     <lastmod>2018-01-23T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://blog.d0zingcat.xyz/blog/relationship-and-friends/</loc>
-    <lastmod>2017-11-08T00:03:13+08:00</lastmod>
   </url>
   
   <url>
@@ -73,8 +73,8 @@
   </url>
   
   <url>
-    <loc>https://blog.d0zingcat.xyz/about/</loc>
-    <lastmod>2018-01-23T00:00:00+00:00</lastmod>
+    <loc>https://blog.d0zingcat.xyz/tags/bfs/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -102,8 +102,26 @@
   </url>
   
   <url>
+    <loc>https://blog.d0zingcat.xyz/tags/dfs/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/tags/filescriptor/</loc>
+    <lastmod>2018-11-03T19:04:17+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://blog.d0zingcat.xyz/</loc>
     <lastmod>2014-09-28T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/tags/gcd/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -132,14 +150,20 @@
   </url>
   
   <url>
-    <loc>https://blog.d0zingcat.xyz/projects/</loc>
-    <lastmod>2018-01-23T23:47:38+08:00</lastmod>
+    <loc>https://blog.d0zingcat.xyz/tags/links/</loc>
+    <lastmod>2018-11-03T17:12:21+08:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/tags/popcount/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://blog.d0zingcat.xyz/tags/</loc>
-    <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -158,6 +182,12 @@
   <url>
     <loc>https://blog.d0zingcat.xyz/tags/themes/</loc>
     <lastmod>2014-04-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://blog.d0zingcat.xyz/tags/union-find/</loc>
+    <lastmod>2018-11-03T18:59:36+08:00</lastmod>
     <priority>0</priority>
   </url>
   
