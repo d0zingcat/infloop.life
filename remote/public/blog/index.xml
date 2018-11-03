@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blog on For(;;);</title>
+    <link>https://blog.d0zingcat.xyz/blog/</link>
+    <description>Recent content in Blog on For(;;);</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 28 Sep 2014 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.d0zingcat.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Creating a New Theme</title>
+      <link>https://blog.d0zingcat.xyz/blog/creating-a-new-theme/</link>
+      <pubDate>Sun, 28 Sep 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/creating-a-new-theme/</guid>
+      <description>Introduction This tutorial will show you how to create a simple theme in Hugo. I assume that you are familiar with HTML, the bash command line, and that you are comfortable using Markdown to format content. I&amp;rsquo;ll explain how Hugo uses templates and how you can organize your templates to create a theme. I won&amp;rsquo;t cover using CSS to style your theme.
+We&amp;rsquo;ll start with creating a new site with a very basic template.</description>
+    </item>
+    
+    <item>
+      <title>Migrate to Hugo from Jekyll</title>
+      <link>https://blog.d0zingcat.xyz/blog/migrate-to-hugo-from-jekyll/</link>
+      <pubDate>Mon, 10 Mar 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/migrate-to-hugo-from-jekyll/</guid>
+      <description>Move static content to static Jekyll has a rule that any directory not starting with _ will be copied as-is to the _site output. Hugo keeps all static content under static. You should therefore move it all there. With Jekyll, something that looked like
+▾ &amp;lt;root&amp;gt;/ ▾ images/ logo.png  should become
+▾ &amp;lt;root&amp;gt;/ ▾ static/ ▾ images/ logo.png  Additionally, you&amp;rsquo;ll want any files that should reside at the root (such as CNAME) to be moved to static.</description>
+    </item>
+    
+    <item>
+      <title>20180819本周总结</title>
+      <link>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 19 Aug 2018 17:21:41 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>这周没有看太多书，值得留下的东西寥寥无几。
+  GDB image not found error  最近因为觉得golang的editor LiteIDE已经很好用了，所以就尝试着用了一把。结果在debug的时候过（需要提前装好GDB，我直接使用的brew进行安装的，也就是brew install gdb），但是当直接在终端中键入的时候会报错：
+dyld: Library not loaded: /usr/local/opt/mpfr/lib/libmpfr.6.dylib以及image not found
+的类似错误。但是Google并没有告诉我答案，只是找到一个类似的相近的问题和回答：dyld: Library not loaded: /usr/local/lib/libmpfr.4.dylib。看到了人家提到了brew，于是继续顺藤摸瓜搜索了dyld，查到了这个OS X / MPFR，看到brew install mpfr便尝试了下，神奇地发现居然问题解决了。GDB又可以用了！
+当然，额外可以提一句的是，在尝试对golang 程序进行debug的过程中，其实GDB并不是那么强大（比如并不支持goroutine），也发现了个替代品：delve 有兴趣的可以自行研究一下子～</description>
+    </item>
+    
+    <item>
+      <title>本周总结</title>
+      <link>https://blog.d0zingcat.xyz/blog/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sat, 04 Aug 2018 09:16:37 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>本周虽然查了不少资料，但是主要只捣鼓了这么几个东西：
+－ 二进制最大公约数算法 － 3d isometrically projection － 分形图形（mandelbrot set）</description>
+    </item>
+    
+    <item>
+      <title>Use Gpg Signing for Github</title>
+      <link>https://blog.d0zingcat.xyz/blog/use-gpg-signing-for-github/</link>
+      <pubDate>Sat, 28 Jul 2018 20:39:40 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/use-gpg-signing-for-github/</guid>
+      <description>A few days ago, I notiecd that when creating a new file or delete that on Github, on the right-hand side, the commits will display a &amp;ldquo;Verified&amp;rdquo; sign. Just look like following:
+Looks really cool, isn&amp;rsquo;t it? So, I&amp;rsquo;ve tried to make this thing appear on every commit(especially on local pc/laptop, using git client) I&amp;rsquo;ve submit, but not soon I&amp;rsquo;ve encountered a lot and a lot troubles(when your os is OS X).</description>
+    </item>
+    
+    <item>
+      <title>Upgrade Git on Mac</title>
+      <link>https://blog.d0zingcat.xyz/blog/upgrade-git-on-mac/</link>
+      <pubDate>Sat, 28 Jul 2018 08:54:04 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/upgrade-git-on-mac/</guid>
+      <description>Recently, I&amp;rsquo;ve tried to use GnuPG signing my commits, but some wierd phenomemon appear. To eliminate other factors that affect the problem, I&amp;rsquo;ve tried to upgrade my Git release on Mac OS X.
+ check git version and back up original git version
+$ git &amp;ndash;version git version 2.10.1 (Apple Git-78) $ sudo mv /usr/bin/git /usr/bin/git-apple
+ Update homebrew(already installed supposed)
+$ brew update &amp;amp;&amp;amp; brew upgrade
+  If you&amp;rsquo;ve not heard Homebrew or not installed before, install brew firstly.</description>
+    </item>
+    
+    <item>
+      <title>Core Java Learning</title>
+      <link>https://blog.d0zingcat.xyz/blog/core-java-learning/</link>
+      <pubDate>Mon, 16 Apr 2018 08:14:09 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/core-java-learning/</guid>
+      <description>最近发生了许多事情，对身边的人的看法有了一些变化，觉得自己能力不足，不足以改变一些偏见或是愚见，也觉得自己慢慢地在被同辈人拉开距离，顿时有了危机感。因此重开荒废已久的博客，准备记录下我从此开始的学习的痕迹。而起点，就是我写了一年的业务代码的基础，Java。所以定下计划1个月内把java核心技术看完。这篇文章将会记录下一些疑问或是总结。
+ ​ 2018.04.16 第三章－Java基本程序设计结构</description>
+    </item>
+    
+    <item>
+      <title>Relationship and Friends</title>
+      <link>https://blog.d0zingcat.xyz/blog/relationship-and-friends/</link>
+      <pubDate>Wed, 08 Nov 2017 00:03:13 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/relationship-and-friends/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>(Hu)go Template Primer</title>
+      <link>https://blog.d0zingcat.xyz/blog/hugo-template-primer/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/hugo-template-primer/</guid>
+      <description>Hugo uses the excellent go html/template library for its template engine. It is an extremely lightweight engine that provides a very small amount of logic. In our experience that it is just the right amount of logic to be able to create a good static website. If you have used other template systems from different languages or frameworks you will find a lot of similarities in go templates.
+This document is a brief primer on using go templates.</description>
+    </item>
+    
+    <item>
+      <title>Getting Started with Hugo</title>
+      <link>https://blog.d0zingcat.xyz/blog/getting-started-with-hugo/</link>
+      <pubDate>Wed, 02 Apr 2014 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/getting-started-with-hugo/</guid>
+      <description>Step 1. Install Hugo Goto hugo releases and download the appropriate version for your os and architecture.
+Save it somewhere specific as we will be using it in the next step.
+More complete instructions are available at installing hugo
+Step 2. Build the Docs Hugo has its own example site which happens to also be the documentation site you are reading right now.
+Follow the following steps:
+ Clone the hugo repository Go into the repo Run hugo in server mode and build the docs Open your browser to http://localhost:1313  Corresponding pseudo commands:</description>
+    </item>
+    
+  </channel>
+</rss>

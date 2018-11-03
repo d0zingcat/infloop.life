@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>About on For(;;);</title>
+    <link>https://blog.d0zingcat.xyz/about/</link>
+    <description>Recent content in About on For(;;);</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 23 Jan 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://blog.d0zingcat.xyz/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>About Me</title>
+      <link>https://blog.d0zingcat.xyz/about/about/</link>
+      <pubDate>Tue, 23 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/about/about/</guid>
+      <description>Recently, I&amp;rsquo;ve been&amp;hellip;
+Reading    Bookname progress     The Go Programming Language 25%   Java核心技术·卷 I（原书第10版） 10%   Linux命令行与shell脚本编程大全 10%   Nineteen Eighty-Four 100%    Watching 高级语言程序设计（Python）CAP
+Attending Here is a list of some meaningful or meaningless things that I&amp;rsquo;ve done before.
+   Time Activity     2017.11.21 finished &amp;ldquo;Black Beauty&amp;rdquo;   2017.12.24 finished &amp;ldquo;2000 leagues under the sea&amp;rdquo;   2018.</description>
+    </item>
+    
+  </channel>
+</rss>

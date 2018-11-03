@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on For(;;);</title>
+    <link>https://blog.d0zingcat.xyz/tags/tags/</link>
+    <description>Recent content in Tags on For(;;);</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 19 Aug 2018 17:21:41 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.d0zingcat.xyz/tags/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>20180819本周总结</title>
+      <link>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sun, 19 Aug 2018 17:21:41 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/20180819%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>这周没有看太多书，值得留下的东西寥寥无几。
+  GDB image not found error  最近因为觉得golang的editor LiteIDE已经很好用了，所以就尝试着用了一把。结果在debug的时候过（需要提前装好GDB，我直接使用的brew进行安装的，也就是brew install gdb），但是当直接在终端中键入的时候会报错：
+dyld: Library not loaded: /usr/local/opt/mpfr/lib/libmpfr.6.dylib以及image not found
+的类似错误。但是Google并没有告诉我答案，只是找到一个类似的相近的问题和回答：dyld: Library not loaded: /usr/local/lib/libmpfr.4.dylib。看到了人家提到了brew，于是继续顺藤摸瓜搜索了dyld，查到了这个OS X / MPFR，看到brew install mpfr便尝试了下，神奇地发现居然问题解决了。GDB又可以用了！
+当然，额外可以提一句的是，在尝试对golang 程序进行debug的过程中，其实GDB并不是那么强大（比如并不支持goroutine），也发现了个替代品：delve 有兴趣的可以自行研究一下子～</description>
+    </item>
+    
+    <item>
+      <title>本周总结</title>
+      <link>https://blog.d0zingcat.xyz/blog/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</link>
+      <pubDate>Sat, 04 Aug 2018 09:16:37 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/%E6%9C%AC%E5%91%A8%E6%80%BB%E7%BB%93/</guid>
+      <description>本周虽然查了不少资料，但是主要只捣鼓了这么几个东西：
+－ 二进制最大公约数算法 － 3d isometrically projection － 分形图形（mandelbrot set）</description>
+    </item>
+    
+    <item>
+      <title>My Sample Project</title>
+      <link>https://blog.d0zingcat.xyz/projects/my-project/</link>
+      <pubDate>Tue, 23 Jan 2018 23:47:38 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/projects/my-project/</guid>
+      <description>This is a sample project.</description>
+    </item>
+    
+    <item>
+      <title>Relationship and Friends</title>
+      <link>https://blog.d0zingcat.xyz/blog/relationship-and-friends/</link>
+      <pubDate>Wed, 08 Nov 2017 00:03:13 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/relationship-and-friends/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>License</title>
+      <link>https://blog.d0zingcat.xyz/license/</link>
+      <pubDate>Tue, 07 Nov 2017 23:07:29 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/license/</guid>
+      <description>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</description>
+    </item>
+    
+    <item>
+      <title>Home</title>
+      <link>https://blog.d0zingcat.xyz/home/</link>
+      <pubDate>Tue, 07 Nov 2017 21:47:07 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/home/</guid>
+      <description>What keeps us alive, more important than blood or oxygen or even love, is hope.</description>
+    </item>
+    
+  </channel>
+</rss>
