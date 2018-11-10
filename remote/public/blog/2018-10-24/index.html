@@ -16,9 +16,9 @@
 <meta property="og:site_name" content="For(;;);" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.d0zingcat.xyz/blog/getting-started-with-hugo/" />
-<meta property="og:title" content="Getting Started with Hugo" />
-<meta property="twitter:title" content="Getting Started with Hugo">
+<meta property="og:url" content="https://blog.d0zingcat.xyz/blog/2018-10-24/" />
+<meta property="og:title" content="2018-10-24" />
+<meta property="twitter:title" content="2018-10-24">
 
     <meta property="twitter:card" content="summary">
 
@@ -27,10 +27,10 @@
 <title>
 
 
-     For(;;); - Getting Started with Hugo 
+     For(;;); - 2018-10-24 
 
 </title>
-<link rel="canonical" href="https://blog.d0zingcat.xyz/blog/getting-started-with-hugo/">
+<link rel="canonical" href="https://blog.d0zingcat.xyz/blog/2018-10-24/">
 
 
 <style media="screen">
@@ -983,37 +983,34 @@ margin-left: -4%;
                 <div class="title-container">
                     <div class="page-heading">
 
-    Getting Started with Hugo
+    2018-10-24
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Wed Apr 2 2014 00:00:00 UTC">Apr 2, 2014</div>
+                    <div class="date" title="Sat Nov 3 2018 19:04:17 CST">Nov 3, 2018</div>
                     
                         
                     
-                    <div class="reading-time"><div class="middot"></div>2 minute read</div>
+                    <div class="reading-time"><div class="middot"></div>1 minute read</div>
                     <div class="tags">
                         <ul>
                           
                             <div class="middot"></div>
-                            <li><a href="https://blog.d0zingcat.xyz/tags/go">go</a> </li>
-                          
-                            <div class="middot"></div>
-                            <li><a href="https://blog.d0zingcat.xyz/tags/golang">golang</a> </li>
-                          
-                            <div class="middot"></div>
-                            <li><a href="https://blog.d0zingcat.xyz/tags/hugo">hugo</a> </li>
-                          
-                            <div class="middot"></div>
-                            <li><a href="https://blog.d0zingcat.xyz/tags/development">development</a> </li>
+                            <li><a href="https://blog.d0zingcat.xyz/tags/filescriptor">filescriptor</a> </li>
                           
                         </ul>
                     </div>
                     <div class="tags">
                         <ul>
                           
+                            <div class="middot"></div>
+                            <li><a href="https://news.ycombinator.com/item?id=">Hacker News</a> </li>
+                          
+                          
+                            <div class="middot"></div>
+                            <li><a href="https://lobste.rs/s/">Lobsters</a> </li>
                           
                         </ul>
                     </div>
@@ -1022,84 +1019,34 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    
+    <blockquote>
+<p>本周继续学习GOPL，在讲到defer语句的时候提到了很有意思的一个概念，是Linux中的<a href="https://en.wikipedia.org/wiki/File_descriptor">file descriptor</a>。简单来讲，linux在系统中都有一个唯一的id指向某个文件，例如0指向标准输入，1指向标准输出，2指向标准错误，3&hellip;从3开始，直接指向到开启文件。最大1024，换言之如果同时开启的文件太多超过1022，那么就会出现Linux File Descriptor 耗尽的问题。以下为全文：</p>
+</blockquote>
 
-<h2 id="step-1-install-hugo">Step 1. Install Hugo</h2>
+<p><strong>File Descriptor</strong></p>
 
-<p>Goto <a href="https://github.com/spf13/hugo/releases">hugo releases</a> and download the
-appropriate version for your os and architecture.</p>
+<p>一个打开的文件通过唯一的描述符进行引用，该描述符是打开文件的元数据到文件本身的映射。在Linux内核中，这个描述符称为文件描述符（FileDescriptor），文件描述符用一个整数表示（C语言中的类型为int），简写为fd。文件描述符在用户空间（相对于内核空间而言，也就是我们应用程序的那层）中共享，允许用户程序用文件描述符直接访问文件。同一个文件能被不同或者相同的进程多次打开，每一个打开文件的实例（也就是java中的File类对象吧）都产生一个唯一的文件描述符。同一个描述符可以被多个进程使用。不同的进程能同时对一个文件进行读写，所以存在并发修改问题。</p>
 
-<p>Save it somewhere specific as we will be using it in the next step.</p>
+<p>每个进程都有个映射文件物理地址的表格（0标准输入 1标准输出 2标准错误 3、4、5&hellip;.就映射你打开过文件的地址）
+进程间怎么通过FileDescriptor共享文件: 子进程继承父进程 地址表格的（父进程调用fork 生成子进程）</p>
 
-<p>More complete instructions are available at <a href="https://blog.d0zingcat.xyz/overview/installing/">installing hugo</a></p>
+<p>内核为每一个进程维护一个打开文件的列表，称为文件表（File Table），索引是fd，数据为打开文件的信息（包括一个指向文件的Inode对象的指针，和相关元数据，如当前文件文职、读取模式）。(Inode包含文件的物理地址) 简单的讲，也就是有了Map结构，key是fd，value是文件的信息（包括物理地址、读取模式。。。。。）
+子进程默认获得一份父进程FIle Table的拷贝，而 更改一个进程的FileTable不会影响另一个进程（如果子进程关闭了文件 不会影响父进程的File Table），所以fd可以用来共享文件。fd用C语言的int表示非负整数，从0开始递增 直到默认上限1024。按照惯例每个进程至少有三个打开的文件描述符，除非进程显式的关闭他们： 0 标准输入（stdin），1标准输出（stdout），2标准错误（stderr）。</p>
 
-<h2 id="step-2-build-the-docs">Step 2. Build the Docs</h2>
-
-<p>Hugo has its own example site which happens to also be the documentation site
-you are reading right now.</p>
-
-<p>Follow the following steps:</p>
+<p><em>Conclusion</em></p>
 
 <ol>
-<li>Clone the <a href="http://github.com/spf13/hugo">hugo repository</a></li>
-<li>Go into the repo</li>
-<li>Run hugo in server mode and build the docs</li>
-<li>Open your browser to <a href="http://localhost:1313">http://localhost:1313</a></li>
+<li>fd的操作实际是系统内核API层次的，java的标准API没有直接相关的操作（据我已知，可以直接通过fd打开文件的）</li>
+<li>进程关联一个类似Map的文件表，key是fd，value是文件的物理地址等等信息。</li>
+<li>可以通过fd打开文件。</li>
+<li>子进程copy父进程的文件表</li>
 </ol>
 
-<p>Corresponding pseudo commands:</p>
+<p><em>Refer</em></p>
 
-<pre><code>git clone https://github.com/spf13/hugo
-cd hugo
-/path/to/where/you/installed/hugo server --source=./docs
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 27 ms
-&gt; Web Server is available at http://localhost:1313
-&gt; Press ctrl+c to stop
-</code></pre>
+<p><em>Linux System Programming</em></p>
 
-<p>Once you&rsquo;ve gotten here, follow along the rest of this page on your local build.</p>
-
-<h2 id="step-3-change-the-docs-site">Step 3. Change the docs site</h2>
-
-<p>Stop the Hugo process by hitting ctrl+c.</p>
-
-<p>Now we are going to run hugo again, but this time with hugo in watch mode.</p>
-
-<pre><code>/path/to/hugo/from/step/1/hugo server --source=./docs --watch
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 27 ms
-&gt; Web Server is available at http://localhost:1313
-&gt; Watching for changes in /Users/spf13/Code/hugo/docs/content
-&gt; Press ctrl+c to stop
-</code></pre>
-
-<p>Open your <a href="http://vim.spf13.com">favorite editor</a> and change one of the source
-content pages. How about changing this very file to <em>fix the typo</em>. How about changing this very file to <em>fix the typo</em>.</p>
-
-<p>Content files are found in <code>docs/content/</code>. Unless otherwise specified, files
-are located at the same relative location as the url, in our case
-<code>docs/content/overview/quickstart.md</code>.</p>
-
-<p>Change and save this file.. Notice what happened in your terminal.</p>
-
-<pre><code>&gt; Change detected, rebuilding site
-
-&gt; 29 pages created
-&gt; 0 tags index created
-&gt; in 26 ms
-</code></pre>
-
-<p>Refresh the browser and observe that the typo is now fixed.</p>
-
-<p>Notice how quick that was. Try to refresh the site before it&rsquo;s finished building.. I double dare you.
-Having nearly instant feedback enables you to have your creativity flow without waiting for long builds.</p>
-
-<h2 id="step-4-have-fun">Step 4. Have fun</h2>
-
-<p>The best way to learn something is to play with it.</p>
+<p><a href="https://blog.csdn.net/zhjali123/article/details/72566685">FileDescriptor（文件描述符 ）与Linux文件系统</a></p>
 
 
                 <br>
@@ -1108,10 +1055,15 @@ Having nearly instant feedback enables you to have your creativity flow without 
             
                 <div class="navigation">
                     
+                    <div>
+                        <img class="icon" src="https://blog.d0zingcat.xyz/img/back.svg" alt="back" />
+                        <a href="https://blog.d0zingcat.xyz/blog/2018-10-18/">2018-10-18</a>
+                    </div>
+                    
                     <div style="width: 100%;"></div>
                     
                     <div>
-                        <a href="https://blog.d0zingcat.xyz/blog/hugo-template-primer/">(Hu)go Template Primer</a>
+                        <a href="https://blog.d0zingcat.xyz/blog/migrate-to-hugo-from-jekyll/">Migrate to Hugo from Jekyll</a>
                         <img class="icon" src="https://blog.d0zingcat.xyz/img/next.svg" alt="next" />
                     </div>
                     
