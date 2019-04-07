@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Java on For(;;);</title>
+    <link>https://blog.d0zingcat.xyz/tags/java/</link>
+    <description>Recent content in Java on For(;;);</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Sun, 18 Nov 2018 12:55:09 +0800</lastBuildDate>
+    
+	<atom:link href="https://blog.d0zingcat.xyz/tags/java/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2018-11-18</title>
+      <link>https://blog.d0zingcat.xyz/blog/2018-11-18/</link>
+      <pubDate>Sun, 18 Nov 2018 12:55:09 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/2018-11-18/</guid>
+      <description>这周刚巧基友在爬国学网站，爬出来的都是json，于是他想到了存在mongodb中，然后再导出为PDF。因为他跟我提了这件事情，联想到腾讯的招聘要求中有一条加分项就是了解过mongodb，心想自己也得去研究一下。于是准备安装。在mac下直接使用brew install mongodb结果炸了：
+php@7.0 mongodb: A full installation of Xcode.app 8.3.2 is required to compile this software. Installing just the Command Line Tools is not sufficient. Xcode 8.3.2 cannot be installed on macOS 10.11. You must upgrade your version of macOS. Error: An unsatisfied requirement failed this build.  嗯，欺负我是黑苹果还是EI Capitan 也就是10.11没法升级没法安装最新的Xcode。嗯，只能另辟蹊径，那我装个docker吧。brew install docker 一切正常，但是当pull的时候提示unix socket未启动，我一想这不就是daemon线程没起么，各种命令敲完之后发现好像自己犯了个错，没有装全组件。brew search一下还真不少，不知道该装哪个了。Google之后发现要装docker-machine,docker-composer还有一堆虚拟化的东西要配，觉得好麻烦，就直接翻docker官网，发现有现成的docker app下载，直接下载解压打开，提示我一定要10.12之后才行，我一口老血。删除之，另找方法。突然转念一想，我不是有虚拟机么，虚拟机里面装个，在宿主机上连接就行啦。果断尝试，刚好我的ubuntu cosmic还是新鲜出炉的流畅地一塌糊涂，装起东西来也是飞快，不过当时用linuxbrew安装docker的时候也陷入了窘境，因为不知道该装哪个，毕竟brew是从OSX移植过来的，毕竟原始是针对Mac平台的。只能去翻docker的官方文档，步骤如下：
+sudo apt install apt-transport-https ca-certificates curl software-properties-common curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add - sudo apt-key fingerprint 0EBFCD88 sudo add-apt-repository &amp;quot;deb [arch=amd64] https://download.</description>
+    </item>
+    
+  </channel>
+</rss>

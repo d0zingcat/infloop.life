@@ -16,21 +16,21 @@
 <meta property="og:site_name" content="For(;;);" />
 <meta property="og:locale" content="nn_NO" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.d0zingcat.xyz/blog/core-java-learning/" />
-<meta property="og:title" content="Core Java Learning" />
-<meta property="twitter:title" content="Core Java Learning">
+<meta property="og:url" content="https://blog.d0zingcat.xyz/blog/2018-11-18/" />
+<meta property="og:title" content="2018-11-18" />
+<meta property="twitter:title" content="2018-11-18">
 
     <meta property="twitter:card" content="summary">
 
-<meta property="og:description" content="">
-<meta property="twitter:description" content="">
+<meta property="og:description" content="2018-11-18">
+<meta property="twitter:description" content="2018-11-18">
 <title>
 
 
-     For(;;); - Core Java Learning 
+     For(;;); - 2018-11-18 
 
 </title>
-<link rel="canonical" href="https://blog.d0zingcat.xyz/blog/core-java-learning/">
+<link rel="canonical" href="https://blog.d0zingcat.xyz/blog/2018-11-18/">
 
 
 <style media="screen">
@@ -983,25 +983,37 @@ margin-left: -4%;
                 <div class="title-container">
                     <div class="page-heading">
 
-    Core Java Learning
+    2018-11-18
 
 </div>
 
                 </div>
                 <div class="meta">
-                    <div class="date" title="Mon Apr 16 2018 08:14:09 CST">Apr 16, 2018</div>
+                    <div class="date" title="Sun Nov 18 2018 12:55:09 CST">Nov 18, 2018</div>
                     
                         
                     
-                    <div class="reading-time"><div class="middot"></div>1 minute read</div>
+                    <div class="reading-time"><div class="middot"></div>8 minute read</div>
                     <div class="tags">
                         <ul>
+                          
+                            <div class="middot"></div>
+                            <li><a href="https://blog.d0zingcat.xyz/tags/java">java</a> </li>
+                          
+                            <div class="middot"></div>
+                            <li><a href="https://blog.d0zingcat.xyz/tags/algorithm">algorithm</a> </li>
                           
                         </ul>
                     </div>
                     <div class="tags">
                         <ul>
                           
+                            <div class="middot"></div>
+                            <li><a href="https://news.ycombinator.com/item?id=">Hacker News</a> </li>
+                          
+                          
+                            <div class="middot"></div>
+                            <li><a href="https://lobste.rs/s/">Lobsters</a> </li>
                           
                         </ul>
                     </div>
@@ -1010,11 +1022,535 @@ margin-left: -4%;
             <div class="markdown">
                 
     
-    <blockquote>
-<p>最近发生了许多事情，对身边的人的看法有了一些变化，觉得自己能力不足，不足以改变一些偏见或是愚见，也觉得自己慢慢地在被同辈人拉开距离，顿时有了危机感。因此重开荒废已久的博客，准备记录下我从此开始的学习的痕迹。而起点，就是我写了一年的业务代码的基础，Java。所以定下计划1个月内把java核心技术看完。这篇文章将会记录下一些疑问或是总结。</p>
-</blockquote>
+    <p>这周刚巧基友在爬国学网站，爬出来的都是json，于是他想到了存在mongodb中，然后再导出为PDF。因为他跟我提了这件事情，联想到腾讯的招聘要求中有一条加分项就是了解过mongodb，心想自己也得去研究一下。于是准备安装。在mac下直接使用<code>brew install mongodb</code>结果炸了：</p>
 
-<p>​   2018.04.16 第三章－Java基本程序设计结构</p>
+<pre><code>php@7.0
+mongodb: A full installation of Xcode.app 8.3.2 is required to compile this software.
+Installing just the Command Line Tools is not sufficient.
+Xcode 8.3.2 cannot be installed on macOS 10.11.
+You must upgrade your version of macOS.
+Error: An unsatisfied requirement failed this build.
+</code></pre>
+
+<p>嗯，欺负我是黑苹果还是EI Capitan 也就是10.11没法升级没法安装最新的Xcode。嗯，只能另辟蹊径，那我装个docker吧。<code>brew install docker</code> 一切正常，但是当pull的时候提示unix socket未启动，我一想这不就是daemon线程没起么，各种命令敲完之后发现好像自己犯了个错，没有装全组件。brew search一下还真不少，不知道该装哪个了。Google之后发现要装docker-machine,docker-composer还有一堆虚拟化的东西要配，觉得好麻烦，就直接翻docker官网，发现有现成的docker app下载，直接下载解压打开，提示我一定要10.12之后才行，我一口老血。删除之，另找方法。突然转念一想，我不是有虚拟机么，虚拟机里面装个，在宿主机上连接就行啦。果断尝试，刚好我的ubuntu cosmic还是新鲜出炉的流畅地一塌糊涂，装起东西来也是飞快，不过当时用linuxbrew安装docker的时候也陷入了窘境，因为不知道该装哪个，毕竟brew是从OSX移植过来的，毕竟原始是针对Mac平台的。只能去翻docker的官方文档，步骤如下：</p>
+
+<pre><code class="language-bash">sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo apt-key fingerprint 0EBFCD88
+sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&quot;
+sudo apt update
+sudo apt install docker-ce
+</code></pre>
+
+<p>但是当这些操作完了之后还是没能安装上docker，软件源中压根没有这个。查了下，发现因为ubuntu cosmic用的是debian 10的内核，换言之，lsb_release -cs 这个命令取到的是buster，这个版本太新了docker还没有适配。然后在这边找到了答案，其实很简单，<a href="https://github.com/docker/for-linux/issues/442">把系统版本直接写死</a>，也就是想这样： <code>sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable&quot;</code> 即可开心地食用，起码我还没遇到啥不能用的bug。另外值得一提的是，parallels使用默认的shared network模式即可实现宿机主机之间通讯，其实通过ifconfig查看也能发现端倪：</p>
+
+<pre><code>en0: flags=8863&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	ether c4:17:fe:d4:d9:71 
+	inet6 fe80::c617:feff:fed4:d971%en0 prefixlen 64 scopeid 0x5 
+	inet 192.168.50.201 netmask 0xffffff00 broadcast 192.168.50.255
+	nd6 options=1&lt;PERFORMNUD&gt;
+	media: autoselect
+	status: active
+p2p0: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; mtu 2304
+	ether 06:17:fe:d4:d9:71 
+	media: autoselect
+	status: inactive
+vnic0: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=3&lt;RXCSUM,TXCSUM&gt;
+	ether 00:1c:42:00:00:08 
+	inet 10.211.55.2 netmask 0xffffff00 broadcast 10.211.55.255
+	media: autoselect
+	status: active
+vnic1: flags=8843&lt;UP,BROADCAST,RUNNING,SIMPLEX,MULTICAST&gt; mtu 1500
+	options=3&lt;RXCSUM,TXCSUM&gt;
+	ether 00:1c:42:00:00:09 
+	inet 10.37.129.2 netmask 0xffffff00 broadcast 10.37.129.255
+	media: autoselect
+	status: active
+</code></pre>
+
+<p>vnic0就是parallels虚拟出来的网卡了，类似的宿机上也有这么一块虚拟网卡。不过一开始调试的时候并不痛，捣鼓了半天才发现是我之前偷懒在linux的.profile文件（用户登录时自动加载一次，但是alias命令貌似无效）中export了http_proxy和https_proxy，所以所有的流量都走代理了，当访问10.xxx的时候走了代理所以就不通了。</p>
+
+<p>既然踩完了这几个坑，自然就想这样要总结一下，所以想要写个博客记录一下。突然想到一直以来欠着的就是一个静态资源服务器。先不说现在的各种OSS有多坑，对象存储机制下的key-value管理非常地不方便，当想要迁移的时候也总是因为各种适配性问题，各种组织不同导致以前写博客时的图片全都很难维护或者失去维护，除了这一点我自己的服务器已经是CN2 GIA线路了，速度应该还是可以的很快的，所以完全可以用静态文件托管的方式来维护博客相关的图片和附件。</p>
+
+<p>能想到的方案有golang写一个文件服务器，然后自动去掉前缀进行访问，例如<a href="https://blog.d0zingcat.xyz/fileserver/aaa/xxx.png">https://blog.d0zingcat.xyz/fileserver/aaa/xxx.png</a> 就访问对应的静态目录下的aaa文件夹下的xxx.png文件（自动移除fileserver前缀）。这么做的好处是通过访问网址来判断是否访问静态资源服务器（而对应的文件直接食用rsync命令同步到服务器上即可），而且因为走的还是blog.d0zingcat.xyz这个域名，所以可以沿用这个域名的https证书。但是坏处是静态资源依赖于这个域名，存在误导性。而且还有个问题是这个需要写nginx的location规则，然额我nginx玩的少不会写。所以只能放弃。那么文件就很简单了，只有新搞一个域名，申请上https证书（因为我的博客开了全站https且是强制开启的，如果引入http的静态资源的话会没法加载）。</p>
+
+<p>但是主要矛盾是穷（就跟上面想到用docker来玩mongodb一个意思），我觉得再为单独一个域名来申请证书代价有点昂贵，而这个域名还是我心血来潮搞的。所以就想到免费的https证书签发组织<a href="https://letsencrypt.org/">letsencrypt</a>。但是之前用这个都是用的官方的工具certbot，非常地庞大和臃肿，不够清真。所以就想到了以前在一个博主（现在记不得网址了）那边看到<a href="https://github.com/lukas2511/dehydrated">dehydrated</a>这个工具，可以很轻便地签发ACME证书。食用方法差不多如下：</p>
+
+<ol>
+<li>克隆<a href="https://github.com/lukas2511/dehydrated">dehydrated</a>项目</li>
+<li>在dehydrated目录下创建config（文本文件，示例如下）、challenge（文件夹）、domains.txt（文本文件，示例如下）</li>
+<li>需要配置对应的nginx。如果没有，可能需要装一个。配置nginx跳转访问well-known目录下的对应文件。示例如下。但是值得注意的是配置了^~这条规则就不要配置普通的 location/ {} 这个块，否则会冲突导致无法正常访问到well-known目录下的文件。当然，也可以在这个目录下新建一个test.txt，随便写点什么，方便测试看是否配置正确。至于是什么机理导致的，我也不清楚。</li>
+<li>需要映射对应的路径到容器中,命令为 <code>docker run --rm -d -v /home/d0zingcat/nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/d0zingcat/dehydrated/challenge:/var/www/dehydrated -p 80:80 -p 443:443 nginx</code>，通过这个来启动对应的容器。/home/d0zingcat是我的$BASEDIR，另外包括dehydrated也在这个目录下。</li>
+<li>使用命令 <code>./dehydrated --register --accept-terms</code> 来完成注册</li>
+<li>使用命令 <code>./dehydrated -c</code> 来完成签约</li>
+</ol>
+
+<p><em>我的config</em>
+值得注意的是CA字段在自己尝试的时候最好改成带“-staging-”的这个，不然可能会因为测试次数频繁而被封（我是没达到过，以前可能有）；
+另外就是如果使用了staging的这个CA且测试成功签发了对应的证书，那也没啥用的，不能拿来部署的，只是测试用。但是如果就简单改一下CA再重新签发还是会续签这个测试证书，比较好的解决方法就是直接把dehydrated目录下的accounts、chains、certs目录全部都移除。
+我也试过使用自签的csr和private key，但是签约POST的时候失败了（400，不是合理的JSON），没有深究，也懒得管了。如果你有兴趣那么尽可以复现这个问题，然后去项目下面提一个issue好了。</p>
+
+<pre><code>########################################################
+# This is the main config file for dehydrated          #
+#                                                      #
+# This file is looked for in the following locations:  #
+# $SCRIPTDIR/config (next to this script)              #
+# /usr/local/etc/dehydrated/config                     #
+# /etc/dehydrated/config                               #
+# ${PWD}/config (in current working-directory)         #
+#                                                      #
+# Default values of this config are in comments        #
+########################################################
+
+# Which user should dehydrated run as? This will be implictly enforced when running as root
+DEHYDRATED_USER=d0zingcat
+
+# Which group should dehydrated run as? This will be implictly enforced when running as root
+DEHYDRATED_GROUP=d0zingcat
+
+# Resolve names to addresses of IP version only. (curl)
+# supported values: 4, 6
+# default: &lt;unset&gt;
+#IP_VERSION=
+
+# Path to certificate authority (default: https://acme-v02.api.letsencrypt.org/directory)
+CA=&quot;https://acme-v02.api.letsencrypt.org/directory&quot;
+#CA=&quot;https://acme-staging-v02.api.letsencrypt.org/directory&quot;
+
+# Path to old certificate authority
+# Set this value to your old CA value when upgrading from ACMEv1 to ACMEv2 under a different endpoint.
+# If dehydrated detects an account-key for the old CA it will automatically reuse that key
+# instead of registering a new one.
+# default: https://acme-v01.api.letsencrypt.org/directory
+#OLDCA=&quot;https://acme-v01.api.letsencrypt.org/directory&quot;
+
+# Which challenge should be used? Currently http-01, dns-01 and tls-alpn-01 are supported
+CHALLENGETYPE=&quot;http-01&quot;
+
+# Path to a directory containing additional config files, allowing to override
+# the defaults found in the main configuration file. Additional config files
+# in this directory needs to be named with a '.sh' ending.
+# default: &lt;unset&gt;
+#CONFIG_D=
+
+# Directory for per-domain configuration files.
+# If not set, per-domain configurations are sourced from each certificates output directory.
+# default: &lt;unset&gt;
+#DOMAINS_D=
+
+# Base directory for account key, generated certificates and list of domains (default: $SCRIPTDIR -- uses config directory if undefined)
+BASEDIR=$SCRIPTDIR
+
+# File containing the list of domains to request certificates for (default: $BASEDIR/domains.txt)
+DOMAINS_TXT=&quot;${BASEDIR}/domains.txt&quot;
+
+# Output directory for generated certificates
+CERTDIR=&quot;${BASEDIR}/certs&quot;
+
+# Output directory for alpn verification certificates
+#ALPNCERTDIR=&quot;${BASEDIR}/alpn-certs&quot;
+
+# Directory for account keys and registration information
+ACCOUNTDIR=&quot;${BASEDIR}/accounts&quot;
+
+# Output directory for challenge-tokens to be served by webserver or deployed in HOOK (default: /var/www/dehydrated)
+WELLKNOWN=&quot;${BASEDIR}/challenge&quot;
+
+# Default keysize for private keys (default: 4096)
+#KEYSIZE=&quot;4096&quot;
+
+# Path to openssl config file (default: &lt;unset&gt; - tries to figure out system default)
+#OPENSSL_CNF=
+
+# Path to OpenSSL binary (default: &quot;openssl&quot;)
+#OPENSSL=&quot;openssl&quot;
+
+# Extra options passed to the curl binary (default: &lt;unset&gt;)
+#CURL_OPTS=
+
+# Program or function called in certain situations
+#
+# After generating the challenge-response, or after failed challenge (in this case altname is empty)
+# Given arguments: clean_challenge|deploy_challenge altname token-filename token-content
+#
+# After successfully signing certificate
+# Given arguments: deploy_cert domain path/to/privkey.pem path/to/cert.pem path/to/fullchain.pem
+#
+# BASEDIR and WELLKNOWN variables are exported and can be used in an external program
+# default: &lt;unset&gt;
+#HOOK=
+
+# Chain clean_challenge|deploy_challenge arguments together into one hook call per certificate (default: no)
+#HOOK_CHAIN=&quot;no&quot;
+
+# Minimum days before expiration to automatically renew certificate (default: 30)
+#RENEW_DAYS=&quot;30&quot;
+
+# Regenerate private keys instead of just signing new certificates on renewal (default: yes)
+#PRIVATE_KEY_RENEW=&quot;yes&quot;
+
+# Create an extra private key for rollover (default: no)
+#PRIVATE_KEY_ROLLOVER=&quot;no&quot;
+
+# Which public key algorithm should be used? Supported: rsa, prime256v1 and secp384r1
+#KEY_ALGO=rsa
+
+# E-mail to use during the registration (default: &lt;unset&gt;)
+#CONTACT_EMAIL=
+
+# Lockfile location, to prevent concurrent access (default: $BASEDIR/lock)
+#LOCKFILE=&quot;${BASEDIR}/lock&quot;
+
+# Option to add CSR-flag indicating OCSP stapling to be mandatory (default: no)
+#OCSP_MUST_STAPLE=&quot;no&quot;
+
+# Fetch OCSP responses (default: no)
+#OCSP_FETCH=&quot;no&quot;
+
+# OCSP refresh interval (default: 5 days)
+#OCSP_DAYS=5
+
+# Issuer chain cache directory (default: $BASEDIR/chains)
+#CHAINCACHE=&quot;${BASEDIR}/chains&quot;
+
+# Automatic cleanup (default: no)
+#AUTO_CLEANUP=&quot;no&quot;
+
+# ACME API version (default: auto)
+#API=auto
+</code></pre>
+
+<p><em>我的domains</em></p>
+
+<p>我只签单域名的，且不涉及别名和通配，所以这边看起来会比较简单一些。你可以看项目的docs下的domains_txt.md这个文档，有很详尽的介绍。</p>
+
+<pre><code>files.d0zingcat.xyz
+</code></pre>
+
+<p><em>我的nginx.conf</em></p>
+
+<pre><code>server {
+		listen 80;
+		server_name files.d0zingcat.xyz;
+		location ^~ /.well-known/acme-challenge {
+    			alias /var/www/dehydrated;
+  		}	
+  		// start
+		location / {
+			root /var/www/blog.d0zingcat.xyz;
+    		index index.html;
+		}
+		// end
+	}
+
+</code></pre>
+
+<p>签约s协议完成之后会在dehydrated目录下看到多了account、chains、certs三个文件夹，但是我们只用的到certs文件夹。里面会有注册的域名，比如我的files.d0zingcat.xyz。进去找到privkey.pem（私钥）和fullchain.pem（注册密钥），复制出去到对应的nginx目录下（为了方便区分特地修改了名字）。然后修改docker的启动脚本为<code>docker run --add-host=&quot;localhost:172.17.0.1&quot; --rm -d -v /home/d0zingcat/nginx/nginx.conf:/etc/nginx/nginx.conf -v /home/d0zingcat/nginx/data/files.d0zingcat.xyz.key:/var/www/https/files.d0zingcat.xyz.key -v /home/d0zingcat/nginx/data/files.d0zingcat.xyz.crt:/var/www/https/files.d0zingcat.xyz.crt -v /home/d0zingcat/dehydrated/challenge:/var/www/dehydrated -p 80:80 -p 443:443 nginx</code>，nginx对应的配置为：</p>
+
+<pre><code>user  nginx;
+worker_processes  1;
+
+error_log  /var/log/nginx/error.log warn;
+pid        /var/run/nginx.pid;
+
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+    include       /etc/nginx/mime.types;
+    default_type  application/octet-stream;
+
+    log_format  main  '$remote_addr - $remote_user [$time_local] &quot;$request&quot; '
+                      '$status $body_bytes_sent &quot;$http_referer&quot; '
+                      '&quot;$http_user_agent&quot; &quot;$http_x_forwarded_for&quot;';
+
+    access_log  /var/log/nginx/access.log  main;
+
+    sendfile        on;
+    #tcp_nopush     on;
+
+    keepalive_timeout  65;
+
+    #gzip  on;
+
+    include /etc/nginx/conf.d/*.conf;
+
+		##
+    	# SSL Settings
+    	##
+
+    	ssl_protocols TLSv1.1 TLSv1.2; # Dropping SSLv3, ref: POODLE
+	#server {
+	#	listen 80;
+	#	server_name files.d0zingcat.xyz;
+	#	location ^~ /.well-known/acme-challenge {
+    	#		alias /var/www/dehydrated;
+  	#	}	
+	#	#location / {
+	#	#	root /var/www/blog.d0zingcat.xyz;
+    	#	#	index index.html;
+	#	#}
+	#}
+	
+	server {
+		listen 80;
+		server_name files.d0zingcat.xyz;
+		return 302 https://$host$request_uri;
+	}
+    	server {
+    		listen 443 http2 ssl;
+    		ssl_certificate /var/www/https/files.d0zingcat.xyz.crt;
+    		ssl_certificate_key /var/www/https/files.d0zingcat.xyz.key;
+		add_header Strict-Transport-Security &quot;max-age=31536000; includeSubDomains&quot; always;
+		keepalive_timeout   70;
+    		ssl_session_cache   shared:SSL:10m;
+    		ssl_session_timeout 10m;
+    		ssl_session_tickets on;
+    		ssl_stapling        on;
+    		ssl_stapling_verify on;
+		ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:ECDHE-RSA-DES-CBC3-SHA:ECDHE-ECDSA-DES-CBC3-SHA:AES128-GCM-SHA256:AES256-GCM-SHA384:AES128-SHA256:AES256-SHA256:AES128-SHA:AES256-SHA:AES:DES-CBC3-SHA:HIGH:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!MD5:!PSK:!aECDH:!EDH-DSS-DES-CBC3-SHA:!EDH-RSA-DES-CBC3-SHA:!KRB5-DES-CBC3-SHA';
+		location / {
+    			#root /var/www/blog.d0zingcat.xyz;
+    			#index index.html;
+			#proxy_set_header X-Real-IP $remote_addr;
+			proxy_pass http://localhost:9000/;
+    		}
+    		server_name files.d0zingcat.xyz;
+    		access_log /var/log/nginx/nginx.vhost.access.log;
+    		error_log /var/log/nginx/nginx.vhost.error.log;
+    }
+
+}
+</code></pre>
+
+<p>这个尽可照着改就是，不会有太大的问题，然后至此重启服务器就完成了服务器端的https的访问。就是90分钟要激活一次，那也挺累的。虽然隐隐约约还记得有hook机制，但是没精力去搞了，顶多就是到时候90天续期一次嘛。可以看道nginx的配置文件有反代了localhost:9000这个地址，这个就是我拿go写的很简单的静态资源服务器啦，源代码如下：</p>
+
+<pre><code class="language-golang">package main
+
+import (
+	&quot;net/http&quot;
+	&quot;os&quot;
+)
+
+func main() {
+	args := os.Args[1:]
+	source := &quot;&quot;
+	cert := &quot;&quot;
+	key := &quot;&quot;
+	port := &quot;&quot;
+	if len(args) &gt; 1 {
+		port = args[0]
+		source = args[1]
+		cert = args[2]
+		key = args[3]
+	} else {
+		port = &quot;9000&quot;
+		source = &quot;tmp&quot;
+		cert = &quot;file.d0zingcat.xyz.pem&quot;
+		key = &quot;file.d0zingcat.xyz.key&quot;
+	}
+	handler := getHandler(source)
+	http.ListenAndServe(&quot;:&quot;+port, handler)
+	http.ListenAndServeTLS(&quot;:&quot;+port, cert, key, handler)
+}
+
+func getHandler(dir string) http.Handler {
+	return http.FileServer(http.Dir((dir)))
+}
+
+</code></pre>
+
+<p>编译了拿到服务器上使用命令<code>nohup ./directory-browser &quot;static&quot; &quot;/home/d0zingcat/blog/data/blog.d0zingcat.xyz.crt&quot; &quot;/home/d0zingcat/blog/data/blog.d0zingcat.xyz.key&quot; &amp;</code>来运行静态资源（需要提前建好static文件夹）。然后本以为这个起好或者nginx也启动好，那么久万事大吉了。但是一次又一次的失败（502 bad gateway），让我焦头烂额不知道怎么处理。突然就有了一个要检查的项，不知道咋回事。但是</p>
+
+<p>把<a href="https://studygolang.com/subject/2">GCTT的golang系列教程</a>全部看完了，因为直接看GOPL实在是太慢了，一方面全英文理解起来没有中文快，另外就是大师就是大师，书籍中的知识深度、广度都非常深远、辽阔，涉及了太多的点就算泛读要一个个弄清楚（比如我就没有做书后的exercise）实在太废劲，就先拿一个浅显易懂的教程整体撸一遍。当然，如果英语好的话可以看<a href="https://golangbot.com/learn-golang-series/">原文</a>。</p>
+
+<p>因为总算看到了golang的信号量和协程，就写了个爬图的脚本看看多线程的威力。记得以前写的爬图脚本是用的python＋bs4，单线程爬了要有好几个小时（当然，也跟电脑配置，网络环境有关系）。但是这次写的是直接解析html正则匹配出来之后直接多线程下载，1600张图片一共耗时2分半，非常的快，而且失败率也很低。关键代码可以见这个：</p>
+
+<pre><code class="language-golang">package spider
+
+import (
+	&quot;fmt&quot;
+	&quot;io/ioutil&quot;
+	&quot;net/http&quot;
+	&quot;os&quot;
+	&quot;path/filepath&quot;
+	&quot;regexp&quot;
+	&quot;strconv&quot;
+	&quot;strings&quot;
+	&quot;sync&quot;
+
+	&quot;github.com/d0zingcat/go-logger/logger&quot;
+)
+
+var pagesCount int
+var failedUrls []string
+var mu *sync.Mutex = &amp;sync.Mutex{}
+
+func init() {
+	logger.SetRollingFile(&quot;.&quot;, &quot;spider.log&quot;, 10, 50, logger.MB)
+	logger.SetLevel(logger.DEBUG)
+	htmlBytes, err := reqPage(HOME_URL)
+	if err != nil {
+		logger.Error(&quot;Get total page count failed!&quot;)
+		panic(err)
+	}
+	re := regexp.MustCompile(`&lt;span aria-current='page' class='page-numbers current'&gt;(\d+)&lt;/span&gt;`)
+	pagesMatch := re.FindAllStringSubmatch(string(htmlBytes), -1)
+	if len(pagesMatch) &gt; 0 &amp;&amp; len(pagesMatch[0]) &gt; 1 {
+		page := pagesMatch[0][1]
+		pagesCount, err = strconv.Atoi(page)
+		if err != nil {
+			logger.Error(&quot;Can not convert page number&quot;)
+			panic(err)
+		}
+	}
+}
+
+func Process(n int, dir string) {
+	count := pagesCount
+	flag := make([]int, pagesCount+1)
+	ch := make(chan int)
+	i := 1
+	for ; i &lt;= pagesCount-n; i += n {
+		go dispatch(i, i+n, ch, dir)
+	}
+	go dispatch(i, pagesCount+1, ch, dir)
+	for count &gt; 0 {
+		flag[&lt;-ch] = 1
+		count--
+	}
+	logger.Info(&quot;Fail to get these urls: &quot;, failedUrls)
+}
+
+func dispatch(start, end int, ch chan int, dir string) {
+	for i := start; i &lt; end; i++ {
+		dynUrl := fmt.Sprintf(TEMPLATE_URL, i)
+		content, err := reqPage(dynUrl)
+		if err != nil {
+			logger.Error(&quot;Req &quot;, dynUrl, &quot; error!&quot;)
+		}
+		content = strings.Replace(content, &quot;\r\n&quot;, &quot;&quot;, -1)
+		content = strings.Replace(content, &quot;\r&quot;, &quot;&quot;, -1)
+		content = strings.Replace(content, &quot;\n&quot;, &quot;&quot;, -1)
+		re := regexp.MustCompile(`&lt;li class=&quot;comment byuser(.*?&lt;/li&gt;)`)
+		comments := re.FindAllString(content, -1)
+		for _, item := range comments {
+			re := regexp.MustCompile(`&lt;img src=&quot;(.+?)&quot;.*?/&gt;`)
+			imgs := re.FindAllStringSubmatch(item, -1)
+			err := storePic(imgs[0][1], dir, strconv.Itoa(i))
+			if err != nil {
+				// logger.Error(err)
+				continue
+			}
+		}
+		ch &lt;- i
+	}
+}
+
+func storePic(url, location, prefix string) error {
+	if _, err := os.Stat(location); os.IsNotExist(err) {
+		err = os.Mkdir(location, 0744)
+		if err != nil {
+			logger.Error(&quot;create dir failed!&quot;)
+			return fmt.Errorf(&quot;Dir create fail&quot;)
+		}
+	}
+	ss := strings.Split(url, &quot;/&quot;)
+	filename := ss[len(ss)-1]
+	resp, err := http.Get(url)
+	if err != nil {
+		logger.Error(&quot;Fail to request the pic: &quot;, url)
+		failedUrls = conAppendSlice(failedUrls, url)
+		return err
+	}
+	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		logger.Error(&quot;Fail to read pic response: &quot;, url)
+		failedUrls = conAppendSlice(failedUrls, url)
+		return err
+	}
+
+	err = ioutil.WriteFile(filepath.Join(location, prefix+&quot;-&quot;+filename), bodyBytes, 0744)
+	if err != nil {
+		logger.Error(&quot;Store pic failed: &quot;, url)
+		failedUrls = conAppendSlice(failedUrls, url)
+		return err
+	}
+	return nil
+}
+
+func conAppendSlice(s []string, e string) []string {
+	mu.Lock()
+	s = append(s, e)
+	mu.Unlock()
+	return s
+}
+func reqPage(url string) (string, error) {
+	resp, err := http.Get(url)
+	if err != nil {
+		logger.Error(&quot;Fail to request the page&quot;)
+		return &quot;&quot;, err
+	}
+	htmlBytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		logger.Error(&quot;Fail to read response&quot;)
+		return &quot;&quot;, err
+	}
+	return string(htmlBytes), nil
+}
+</code></pre>
+
+<p>在看GOPL的过程中呢，看到了struct中匿名嵌入其他结构的用法，方法自推导的机制，方法也可以作为一个变量实现了类似于托管的机制。不过在往下推进的时候看到了Bit Vector，书中源码如下：</p>
+
+<pre><code class="language-golang">// An IntSet is a set of small non-negative integers.
+// Its zero value represents the empty set.
+type IntSet struct {
+    words []uint64
+}
+// Has reports whether the set contains the non-negative value x.
+func (s *IntSet) Has(x int) bool {
+    word, bit := x/64, uint(x%64)
+    return word &lt; len(s.words) &amp;&amp; s.words[word]&amp;(1&lt;&lt;bit) != 0
+}
+// Add adds the non-negative value x to the set.
+func (s *IntSet) Add(x int) {
+    word, bit := x/64, uint(x%64)
+    for word &gt;= len(s.words) {
+        s.words = append(s.words, 0)
+    }
+    s.words[word] |= 1 &lt;&lt; bit
+}
+// UnionWith sets s to the union of s and t.
+func (s *IntSet) UnionWith(t *IntSet) {
+         for i, tword := range t.words {
+             if i &lt; len(s.words) {
+                 s.words[i] |= tword
+             } else {
+                 s.words = append(s.words, tword)
+            } 
+    }
+}
+</code></pre>
+
+<p>有点没看明白这个intset的机制，于是开始查资料。</p>
+
+<p>Hashmap</p>
+
+<ul>
+<li>hashmap不线程安全、效率高、key，value可以为null</li>
+<li>hashset线程安全、效率低、key，value不能为空</li>
+</ul>
+
+<p>Hashmap是一个数组链表，容量始终都是2的N次方（大于当前实际负载），阀值＝负载因子＊容量，当实际容量大于阀值时，就会进行扩容。</p>
+
+<p>put时如果key为null，则取第一个bucket的entry，并根据链表一直往下找到key为null的，将value设为对应的值，否则新建一个entry。
+如果key不为null，首先根据hashCode()方法获取key的哈希值，然后使用indexFor(hash,table.length)获取table中要存放的位置并存储。当两个元素的key的hashcode相同时，则在该位置上存放新的entry，并且指向原有的entry。所以对于一个table的某个位置而言，可能会存放多个键值对，但是最新的在最前面。</p>
+
+<p>get时如果key为null则调用getForNullKey()方法，否则根据hash函数取到hash值，并根据indexFor()得到i的值，之后便利链表。如果有则返回对应的value。</p>
 
 
                 <br>
@@ -1023,12 +1559,12 @@ margin-left: -4%;
             
                 <div class="navigation">
                     
-                    <div style="width: 100%;"></div>
-                    
                     <div>
-                        <a href="https://blog.d0zingcat.xyz/blog/upgrade-git-on-mac/">Upgrade Git on Mac</a>
-                        <img class="icon" src="https://blog.d0zingcat.xyz/img/next.svg" alt="next" />
+                        <img class="icon" src="https://blog.d0zingcat.xyz/img/back.svg" alt="back" />
+                        <a href="https://blog.d0zingcat.xyz/blog/2018-10-24/">2018-10-24</a>
                     </div>
+                    
+                    <div style="width: 100%;"></div>
                     
                 </div>
             
