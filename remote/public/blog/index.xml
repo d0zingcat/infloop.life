@@ -6,10 +6,38 @@
     <description>Recent content in Blog on For(;;);</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 18 Nov 2018 12:55:09 +0800</lastBuildDate>
+    <lastBuildDate>Tue, 05 Feb 2019 20:58:41 +0800</lastBuildDate>
     
 	<atom:link href="https://blog.d0zingcat.xyz/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Setting Shadowsocks Libev With Obfs</title>
+      <link>https://blog.d0zingcat.xyz/blog/setting-shadowsocks-libev-with-obfs/</link>
+      <pubDate>Tue, 05 Feb 2019 20:58:41 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/setting-shadowsocks-libev-with-obfs/</guid>
+      <description>今天是2019年2月5日，农历大年初一。但是今天发现昨天icloud photos加载不出来不是空穴来风，应该是GFW升级了之类导致的，起码在目前的网络环境下（江苏电信），是电脑和手机全线崩，不能访问Google的。
+ 所以第一时间考虑如何修复这个问题。但是对于我而言翻墙成本有以下几个需要考虑的点：
+ 多用户多端口（小伙伴们合租） 上网习惯了PAC模式自动切换代理开关 PAC模式可以随时新增网址（算是第2点的补充，这个列表需要不停地update）  但是先应急使用了Cisco Any connect（Open Connect Server，也就是ocserv），现在不比以前需要shell安装配置一大堆的东西，直接docker镜像跑一下即可。
+docker run --name ocserv --privileged -p 8080:443 -p 8080:443/udp -d tommylau/ocserv  也就是内部端口443，映射到外部8080，主机没有配置iptables，然后果然在两个环境下都可以正常翻墙了，但是anyconnect有个我最不喜欢的地方就是全局代理，即便是通过CIDR进行智能路由，也存在着IP错杀或是不准确的情况，更新起来也必须要改服务端，很麻烦。所以就先作为一个应急手段吧。脑袋里就想起来破娃酱之前有发过一篇文章是关于识别ss的流量的，然后引发了巨大的争议和批判（而且还导致他删除了自己大部分的repo，当然，早期他的shadowsocksr-windows不开源也引发过很大的争议，但是没这次这么夸张，其实这个很不应该），所以就连带地想起来破娃酱的shadowsockr-windows的一个特性就是支持混淆，当然，那篇文章之后（前因后果就不谈了，感兴趣的自己去搜索吧）https://github.com/madeye也发过文章说明了一些情况，也给了解决方案－－混淆。所以这边我想先试着通过插件进行混淆流量能不能成功翻墙。
+*闹了个乌龙，可能是主机程序原因高位端口被占用冲突了所以不能访问，改个端口问题得到了解决。*不过还是能继续捣鼓下去的，这边也记录下来。初步尝试v2ray-plugin，开启80端口混淆配上shadowsocksx-ng是可以正常访问的。不过距离我的tls混淆，以及多账户同端口共用（通过ng转发）的设想还有点远，所以目前先凑活用下去。等我下次捣鼓https混淆的时候，我就会完整地把过程记录下来了。</description>
+    </item>
+    
+    <item>
+      <title>2019.01.27</title>
+      <link>https://blog.d0zingcat.xyz/blog/2019.01.27/</link>
+      <pubDate>Sun, 27 Jan 2019 18:26:00 +0800</pubDate>
+      
+      <guid>https://blog.d0zingcat.xyz/blog/2019.01.27/</guid>
+      <description>生活总是充满了无穷无尽的困难，以及希望。
+ 最近越发地清楚地意识到了自己换工作是多么迫切的一件事情（虽然18年的3月份就有此打算但是不知道为何精力不够或者说自控力不够强导致一直延期延期或者得过且过，一直没能下定决心）。通过又是一年的工作，平时的工作内容，考虑到薪资待遇以及自己能力的成长，越发觉得上海某地方银行的信用卡中心是个不宜久留的地方，不然自己的人生都得搭进去。简单分析有以下几个原因：
+ 管理和“大”公司病。只注重文档和管理形式而非真的管理，管理异常混乱，各个团队各自为政，有能力的人得不到话语权反而是小丑一样只会装逼的人混的各种风生水起，排资论辈，各种规章流程规范满天飞，极度拖慢了各种事项的进展，同时也给开发人员带来了无穷无尽的杂活，常常忙了一天也不知道自己一天究竟做了什么，这是对生命的浪费。 薪资。当然，这个是我自己不够努力，在该学习的时候不学习没有一个好的学历和出身，所以显得非常廉价。但是我知道自己不只这个价钱，告诫自己：千里马拉习惯了磨，也就觉得自己是骡子。我相信自己的价值和能力。而且，我想*结婚*了。 团度氛围。本来刚入职的时候觉得整个项目组还是比较像一个大家庭的，但是莫名其妙的矛盾冲突越来越对，跟自己的项目组是这样，跟业务也是，跟测试也是，脾气越来越差，管理对自己的剥削越来越对，各种铁面制度或是瞎指挥，越来越让我觉得这边已经没有啥值得我留恋的。 技术成长。感觉自己技术的成长空间已经基本没有了（虽然浩哥~~~~@404notfound还有很多很多值得我学的，但是目前为止我并不想走单纯后台java业务开发的线路），所以是时候走了。 还是要多看看别人的公司和氛围以及别人在做的事情的，总是重复一件事情慢慢地都忽视了自己一直没有进步。  今天（本篇文章也是拖延症晚期系列的产出）刷微博的时候发现离职根本不需要这么多理由（请原谅我加戏了。。）：
+因此，下文将记录一些我在准备面试或者说各种自己以前欠下的债的弥补内容。不得不说没有个985的硕士身份真的寸步难行。另外自己的人生没有在对的时候做对的事情，自己能力低微也是“罪有应得”。人生没有捷径，我该怎么弥补自己的错呢。。
+面试题大纲 Java相关  乐观悲观锁   Tree(s)  treesort  参考： GOPL Page 101 ch4/treesort
+代码实现如：
+package treesort type Tree struct { val int left, right *Tree } func Add(root *Tree, val int) *Tree { if root == nil { t := new(Tree) t.val = val return t } if val &amp;lt; root.val { root.left = Add(root.</description>
+    </item>
     
     <item>
       <title>2018-11-18</title>
@@ -86,16 +114,6 @@ $ git &amp;ndash;version git version 2.10.1 (Apple Git-78) $ sudo mv /usr/bin/gi
  Update homebrew(already installed supposed)
 $ brew update &amp;amp;&amp;amp; brew upgrade
   If you&amp;rsquo;ve not heard Homebrew or not installed before, install brew firstly.</description>
-    </item>
-    
-    <item>
-      <title>Core Java Learning</title>
-      <link>https://blog.d0zingcat.xyz/blog/core-java-learning/</link>
-      <pubDate>Mon, 16 Apr 2018 08:14:09 +0800</pubDate>
-      
-      <guid>https://blog.d0zingcat.xyz/blog/core-java-learning/</guid>
-      <description>最近发生了许多事情，对身边的人的看法有了一些变化，觉得自己能力不足，不足以改变一些偏见或是愚见，也觉得自己慢慢地在被同辈人拉开距离，顿时有了危机感。因此重开荒废已久的博客，准备记录下我从此开始的学习的痕迹。而起点，就是我写了一年的业务代码的基础，Java。所以定下计划1个月内把java核心技术看完。这篇文章将会记录下一些疑问或是总结。
- ​ 2018.04.16 第三章－Java基本程序设计结构</description>
     </item>
     
   </channel>
