@@ -1,9 +1,8 @@
-+++
-title = 'Use Gpg Signing for Github'
-date = 2018-07-28T20:39:40+08:00
-draft = true
-description = ""
-+++
+---
+title: "Use Gpg Signing for Github"
+date: 2018-07-28T20:39:40+08:00
+draft: false
+---
 
 A few days ago, I notiecd that when creating a new file or delete that on Github,  on the right-hand side, the commits will display a "Verified" sign. Just look like following:
 

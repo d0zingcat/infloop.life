@@ -1,17 +1,8 @@
-+++
-title = 'Upgrade Git on Mac'
-date = 2018-07-28T08:54:04+08:00
-draft = true
-tags = ["tags"]
-description = "Desc"
-
-# For twitter cards, see https://github.com/mtn/cocoa-eh-hugo-theme/wiki/Twitter-cards
-meta_img = "/images/image.jpg"
-
-# For hacker news and lobsters builtin links, see github.com/mtn/cocoa-eh-hugo-theme/wiki/Social-Links
-hacker_news_id = ""
-lobsters_id = ""
-+++
+---
+title: "Upgrade Git on Mac"
+date: 2018-07-28T08:54:04+08:00
+draft: false
+---
 
 Recently, I've tried to use GnuPG signing my commits, but some wierd phenomemon appear. To eliminate other factors that affect the problem, I've tried to upgrade my Git release on Mac OS X.
 

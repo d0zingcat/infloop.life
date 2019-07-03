@@ -14,22 +14,22 @@
 <meta property="og:site_name" content="For(;;);" />
 <meta property="og:locale" content="en-US" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://blog.d0zingcat.xyz/links/" />
-<meta property="og:title" content="links" />
-<meta property="twitter:title" content="links">
+<meta property="og:url" content="https://blog.d0zingcat.xyz/blog/manage-python-project-configurations/" />
+<meta property="og:title" content="Manage python project configurations" />
+<meta property="twitter:title" content="Manage python project configurations">
 
     <meta property="twitter:card" content="summary">
 
-<meta property="og:description" content="Here are some funny guys&#39; websites or blogs.">
-<meta property="twitter:description" content="Here are some funny guys&#39; websites or blogs.">
+<meta property="og:description" content="">
+<meta property="twitter:description" content="">
 
 <title>
 
 
-     For(;;); - links 
+     For(;;); - Manage python project configurations 
 
 </title>
-<link rel="canonical" href="https://blog.d0zingcat.xyz/links/">
+<link rel="canonical" href="https://blog.d0zingcat.xyz/blog/manage-python-project-configurations/">
 
 
 <style media="screen">
@@ -1028,32 +1028,213 @@ margin-left: -4%;
 
 
 
-<div class="main column">
+
+
+<div class="main post non-narrow zero-top-spacing column">
     <div class="container">
         <div class="content">
-            <div class="page-heading">
+            <div class="front-matter">
+                <div class="title-container">
+                    <div class="page-heading">
 
     
-    links
+    Manage python project configurations
     
 
 </div>
 
+                </div>
+                <div class="meta">
+                    <div class="date" title="Fri May 3 2019 11:02:09 CST">May 3, 2019</div>
+                    
+                        
+                    
+                    
+                    <div class="reading-time middot">3 minute read</div>
+                    
+                    <div class="tags">
+                        <ul>
+                          
+                        </ul>
+                    </div>
+                    <div class="tags">
+                        <ul>
+                          
+                          
+                        </ul>
+                    </div>
+                </div>
+            </div>
             <div class="markdown">
                 
     
-    <blockquote>
-<p>Here are some blog recommendations for you.</p>
-</blockquote>
+    <p>When working on a python project I&rsquo;ve been thinking how to manage the configurations in an elegant way, just like the &lsquo;maven-way&rsquo;(use a placeholder and replace them when packaging). Here are some points I care about:</p>
 
-<p><a href="https://droomo.top">Droomo</a></p>
+<ol>
+<li>separate development and production configs</li>
+<li>easy to use, no need to include third party packages</li>
+<li>safe, will not be committed to git repo by mistake</li>
+<li>out-of-box, no need to modify the code to run on production or development environment</li>
+</ol>
 
-<p><a href="http://windranger.wang">Windranger</a></p>
+<p>As I have such requirements, after researching I finally choose this way to handle it.</p>
 
-<p><a href="https://blog.xingoxu.com">Xingo</a></p>
+<p>The structure looks like:</p>
+
+<p><img src="https://files.d0zingcat.xyz/blog/posts/manage-python-configs/config-module.png" alt="" /></p>
+
+<p><em>base_config.py</em></p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+class Config(object):
+    _DEBUG = False
+    _PROD = False
+
+    def __getitem__(self, key):
+        return self.__getattribute__(key)
+        
+   	common_1 = '1'
+    common_2 = '2'
+    common_3 = '3'
+    common_4 = '4'
+    common_5 = '5'
+</code></pre>
+
+<p><em>config_dev.py</em></p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from .base_config import Config
+
+class DevelopmentConfig(Config):
+    _DEBUG = True
+    
+    customized_1 = '1111'
+    customized_2 = 'two'
+    
+</code></pre>
+
+<p><em>config_prod.py</em></p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
+from .base_config import Config
+
+class ProductionConfig(Config):
+    _PROD = True
+    
+    customized_1 = 'oneoneone'
+    customized_2 = '2'
+</code></pre>
+
+<p><em>config.py</em></p>
+
+<pre><code class="language-python">#!/usr/bin/env python
+# -*- coding:utf-8 -*-
+import os
+
+from .config_dev import DevelopmentConfig
+from .config_prod import ProductionConfig
+
+mappings = {
+    'development': DevelopmentConfig,
+    'production': ProductionConfig,
+    'default': DevelopmentConfig
+}
+
+MY_ENV = os.environ.get('MY_ENV', 'default').lower()
+config = mappings[MY_ENV]()
+</code></pre>
+
+<p><em><strong>init</strong>.py</em></p>
+
+<p>this file is only to declare: the costconfig is a module</p>
+
+<p><em>from other file</em></p>
+
+<pre><code class="language-python">from costconfig.config import config as Config
+</code></pre>
+
+<p>In the files you need to use config you just need to import it.</p>
+
+<p>As you can see, the config file is key point. When entering the main scope, it will try to get environment &lsquo;MY_ENV&rsquo;(&lsquo;default&rsquo; by default and will use dev config) and get related config class according to this env variable, by which we can easily export an environment &lsquo;MY_ENV&rsquo; to production on the server then the program will use production config. In this way, we can just run the same code without modifying even one line of the codes on server or on local development environment, just modify the configs and everything works fine.</p>
+
+<p>In addition, there are still three steps you have to take.</p>
+
+<ol>
+<li>add this filename into .gitignore, for me is: <code>*config/*_prod.*</code> to ignore the production config, in this case we will never have to worry about commit the production config to git repo(e.g. Github)</li>
+<li>export MY_ENV on server, for me is add <code>export MY_ENV=production</code> to the end of ~/.bshrc</li>
+<li>if you use a crontab to execute your script, you will find the program fails. That&rsquo;s because the crontab env is not safe like your bash, namely it will not execute your ~/.bashrc file first before executing. So, you have to declare in the crontab, just use <code>crontab -e</code> to edit the crontab and add <code>MY_ENV=production</code> at the first line.</li>
+</ol>
+
+<p>Reference:</p>
+
+<p><a href="https://raymii.org/s/tutorials/Better_cron_env_and_shell_control_with_the_SHELL_variale.html">Better Cron env and shell control with the SHELL variable</a></p>
+
+<p><a href="https://krisjordan.com/blog/2013/11/04/timesaving-crontab-tips">Timesaving crontab Tips</a></p>
+
+<p><a href="https://codeburst.io/linux-environment-variables-53cea0245dc9">Linux Environment Variables</a></p>
+
+<p><a href="https://linuxize.com/post/scheduling-cron-jobs-with-crontab/">Scheduling Cron Jobs with Crontab</a></p>
+
+<p><a href="https://unix.stackexchange.com/questions/27289/how-can-i-run-a-cron-command-with-existing-environmental-variables">how-can-i-run-a-cron-command-with-existing-environmental-variables</a></p>
+
+<p><a href="https://stackoverflow.com/questions/2229825/where-can-i-set-environment-variables-that-crontab-will-use">where-can-i-set-environment-variables-that-crontab-will-use</a></p>
 
 
             </div>
+            
+            
+            <br>
+            <div class="navigation">
+                
+                <div>
+                    <img class="icon" src="https://blog.d0zingcat.xyz/img/back.svg" alt="back" />
+                    <a href="https://blog.d0zingcat.xyz/blog/setting-shadowsocks-libev-with-obfs/">Setting Shadowsocks Libev With Obfs</a>
+                </div>
+                
+                <div style="width: 100%;"></div>
+                
+                <div>
+                    <a href="https://blog.d0zingcat.xyz/blog/%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8beancount%E6%9D%A5%E8%AE%B0%E8%B4%A6%E5%8F%8A%E9%83%A8%E7%BD%B2%E7%A7%81%E6%9C%8D%E8%AE%B0%E5%BD%95/">推荐使用Beancount来记账及部署私服记录</a>
+                    <img class="icon" src="https://blog.d0zingcat.xyz/img/next.svg" alt="next" />
+                </div>
+                
+            </div>
+            
+            
+            <br>
+            <div class="disqus">
+                <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "inflooping" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+            </div>
+            
+
+            
+
+            
         </div>
     </div>
 </div>
