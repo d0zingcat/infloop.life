@@ -1,0 +1,4 @@
+[submodule "themes/even"]
+	path = themes/even
+	url = https://github.com/D0zingcat/hexo-theme-even
+	branch = master
