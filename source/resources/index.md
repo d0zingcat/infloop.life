@@ -45,6 +45,10 @@ Recently, I've been...
 
 | Name | Progress  |
 | --- | --- |
+| [可汗学院公开课：语法](http://open.163.com/newview/movie/courseintro?newurl=%2Fspecial%2FKhan%2Fgrammar.html)| pending|
+| [伍六七之最强发型师]() | pending|
+| [刺客伍六七 第一季 ](https://movie.douban.com/subject/27624762/)| &#10003; |
+| [七个世界，一个星球](https://zh.wikipedia.org/wiki/七个世界，一个星球)|pending|
 | [罗小黑战记](https://baike.baidu.com/item/罗小黑战记/22902442) |
 | [哪吒之魔童降世](https://movie.douban.com/subject/26794435//) |
 | [中国机长](https://movie.douban.com/subject/30295905/) |
