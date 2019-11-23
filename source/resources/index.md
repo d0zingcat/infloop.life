@@ -9,6 +9,7 @@ Recently, I've been...
 | [The Go Programming Language][2] | 55% |
 | [Erlang程序设计（第2版）][3]| 50% |
 | [Erlang趣学指南][4]| 30%|
+| [乌合之众：大众心理研究](https://zh.wikipedia.org/wiki/乌合之众：大众心理研究)|&#10003;|
 | [月亮和六便士](https://zh.wikipedia.org/wiki/%E6%9C%88%E4%BA%AE%E5%92%8C%E5%85%AD%E4%BE%BF%E5%A3%AB)|&#10003; |
 | [解忧杂货店](https://book.douban.com/subject/25862578/)| &#10003; |
 | [三體](https://zh.wikipedia.org/wiki/%E4%B8%89%E4%BD%93_(%E5%B0%8F%E8%AF%B4))| &#10003;|
