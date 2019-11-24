@@ -29,7 +29,7 @@ Gohugo是个非常高效的静态博客生成器，而且是用我当时最痴�
 
 值得注意的是每次对主题进行修改之后需要在主题repo内部进行一次提交，然后到外部仓库再做一次提交（不论你对主题仓库做多少次提交对于外部仓库而言都是几成一次特殊的文件提交）。比较坑的是Netlify在拉取信息的时候，如果主Repo中有repo的嵌套，必须添加submodule，但是submodule中不一定会追踪文件的更改。可以使用命令 `git submodule add -b master https://github.com/D0zingcat/hexo-theme-even themes/even` 进行添加子模块，然后重新提交一下整个项目文件即可。submodule不会追踪子模块的更改，换言之如果要对子模块进行更改，那么需要进入到子模块提交文件修改之后再在主目录下进行提交，这时子模块是作为一个特殊的文件引用（160000 mode）提交的。如果子模块添加错了可以参考[这个](https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule)。但是有个比较坑的地方是even这个主题里面的`.gitignore`中有`_config.yml`，所以自己自定义的配置文件更改都默认被忽略掉了（我找了半天的问题就是不明白为什么submodule会没法追踪文件的修改），记得从中删除之后[重新提交](https://blog.csdn.net/yingpaixiaochuan/article/details/53729446)配置文件，不然Netlify也没法拿到正确的配置。同时Even因为有gh-pages的分支，Netlify会自动拉取这个分支然后就报错了，具体原因未知，也懒得追溯。手动[删除master之外的分支](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)之后重新deploy得到解决。
 
-# Refer:
+# Refer
 
 [Hexo Next主题集成Gittalk](http://www.coldcrack.me/2018/07/18/Next_Gittalk/#未找到相关的issue评论，请联系xxx初始化创建)
 
