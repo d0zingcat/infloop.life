@@ -24,12 +24,12 @@ Gohugo是个非常高效的静态博客生成器，而且是用我当时最痴�
 6. 设置Rss。hexo默认是不启用rss的，需要启用的话需要自己安装一个插件 `npm install hexo-generator-feed --save` ，当然配置文件可以参考[我的repo](https://github.com/D0zingcat/blog.d0zingcat.xyz)，也可以看even[官方的wiki](https://github.com/ahonn/hexo-theme-even/wiki/设置-RSS)，写的已经很详细了。另外我发现主题中feed是default的时候会报错`Hexo  Unhandled rejection TypeError: path.startsWith is not a function` ，没有细究（因为不懂js），查到说把rss关了就好了，尝试了一下果然是可以的。但是这个方式不够清真，因为万一自己的读者喜欢用rss呢，所以我捣鼓了一下发现把主题的`_config.yml`中的feed从default改成'atom.xml'就可以解决这个问题，神奇，我也不知道为什么。
 7. 发现[Disqus](https://disqus.com)现在也进入了收割期，开始投放广告和推出来Plus版本的套餐，嗯， 好像没那么清真了。同时我因为准备把自己的博客更名（包括访问地址）的缘故（blog.d0zingcat.xyz->infloop.life）意味生活就是一个无限循环，所以当我试着用这个shortname去注册disqus的时候我发现被人注册了，所以我就不开心了，果断放弃之，毕竟主题还支持其他的评论插件。本来准备使用来必力，上官网看了一眼发现不是我想要的，所以就选择了gittalk。gittalk配置需要几个步骤：[申请Github Application](https://github.com/settings/applications/new)，记录下client id和client secret，authoriaztion callbackurl填博客主页地址就好。even的`_config.yml`中的参数对应改一下就好。需要注意的是`repo`填repo的名称（比如我的就是infloop.life），`github id`填你的用户名（不是邮箱，比如我的是d0zingcat），还有 `enable` 别忘了改成 true（默认是false）。另外就是如果提示“#未找到相关的issue评论，请联系xxx初始化创建”，意味着你需要使用登陆该repo的所有人的Github账号并且随便点开一篇文章之后点一下Gitalk的登陆按钮，之后你进入的文章就会自动开启gitalk评论框了。
 8. 发现Gitalk有个致命的缺陷，那就是每个文章会创建一个issue（我感觉这个东西还是比较适合某个开源项目的主页），所以可以看到github的activities全是issue，而且我也不能保证我的读者全部都是程序员，而Gitalk需要登陆Github才能评论。这个感觉不够清真，所以就又换回了Disqus。
+9. 因为每次提交修改都需要三连：add、commit、push比较麻烦，作为程序员还是无法接受，于是写个Makefile（需要提前安装好GnuMake，可以通过`brew install make`来安装），可以参考[附录](#makefile)。然后之后每次提交只需要`make m="commit msg"`进行提交啦。
 
 
 值得注意的是每次对主题进行修改之后需要在主题repo内部进行一次提交，然后到外部仓库再做一次提交（不论你对主题仓库做多少次提交对于外部仓库而言都是几成一次特殊的文件提交）。比较坑的是Netlify在拉取信息的时候，如果主Repo中有repo的嵌套，必须添加submodule，但是submodule中不一定会追踪文件的更改。可以使用命令 `git submodule add -b master https://github.com/D0zingcat/hexo-theme-even themes/even` 进行添加子模块，然后重新提交一下整个项目文件即可。submodule不会追踪子模块的更改，换言之如果要对子模块进行更改，那么需要进入到子模块提交文件修改之后再在主目录下进行提交，这时子模块是作为一个特殊的文件引用（160000 mode）提交的。如果子模块添加错了可以参考[这个](https://stackoverflow.com/questions/1260748/how-do-i-remove-a-submodule)。但是有个比较坑的地方是even这个主题里面的`.gitignore`中有`_config.yml`，所以自己自定义的配置文件更改都默认被忽略掉了（我找了半天的问题就是不明白为什么submodule会没法追踪文件的修改），记得从中删除之后[重新提交](https://blog.csdn.net/yingpaixiaochuan/article/details/53729446)配置文件，不然Netlify也没法拿到正确的配置。同时Even因为有gh-pages的分支，Netlify会自动拉取这个分支然后就报错了，具体原因未知，也懒得追溯。手动[删除master之外的分支](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-and-deleting-branches-within-your-repository)之后重新deploy得到解决。
 
-Refer:
-
+# Refer:
 
 [Hexo Next主题集成Gittalk](http://www.coldcrack.me/2018/07/18/Next_Gittalk/#未找到相关的issue评论，请联系xxx初始化创建)
 
@@ -41,3 +41,23 @@ Refer:
 
 [为Hexo博客添加LiveRe评论系统](https://juejin.im/post/5a632dfcf265da3e484be90c)
 
+[Makefile git add commit push github All in One command](https://medium.com/@panjeh/makefile-git-add-commit-push-github-all-in-one-command-9dcf76220f48)
+
+# Appendix
+
+## Makefile
+
+```
+all: git
+
+git:
+	git add .
+	git commit -m "$m"
+	git push
+
+clean:
+	hexo clean
+
+view:
+	hexo s -g
+```
