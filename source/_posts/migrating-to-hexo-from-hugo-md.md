@@ -43,6 +43,7 @@ Gohugo是个非常高效的静态博客生成器，而且是用我当时最痴�
 
 [Makefile git add commit push github All in One command](https://medium.com/@panjeh/makefile-git-add-commit-push-github-all-in-one-command-9dcf76220f48)
 
+[Cross-reference (named anchor) in markdown](https://stackoverflow.com/questions/5319754/cross-reference-named-anchor-in-markdown)
 # Appendix
 
 ## Makefile
