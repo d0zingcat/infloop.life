@@ -46,6 +46,8 @@ Recently, I've been...
 
 | Name | Progress  |
 | --- | --- |
+| [獵魔士](https://www.netflix.com/hk/title/80189685)| &#10003; |
+| [利刃出鞘 Knives Out](https://movie.douban.com/subject/30318116/?from=showing)| &#10003; |
 | [可汗学院公开课：语法](http://open.163.com/newview/movie/courseintro?newurl=%2Fspecial%2FKhan%2Fgrammar.html)| pending|
 | [伍六七之最强发型师]() | pending|
 | [刺客伍六七 第一季 ](https://movie.douban.com/subject/27624762/)| &#10003; |
