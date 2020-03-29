@@ -81,6 +81,14 @@ Recently, I've been...
 | [Stardew Valley][33] | Pending |
 | [AFK Arena][34] | / |
 
+### 后端书单
+
+> 列举一下我作为一个后端/服务器开发所看过的书（们），一方面记录一下，另一方便也算是督促自己继续坚持看书，补充能量，减少自己的知识盲区。
+
+#### 协议相关
+
+- [《图解HTTP》](https://book.douban.com/subject/25863515/)
+
 
 [1]:	https://www.liaoxuefeng.com/wiki/1016959663602400
 [2]:	http://www.gopl.io/
