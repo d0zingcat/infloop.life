@@ -8,4 +8,4 @@
 > 面向阳光，做一个开朗自信的人。
 
 
-你好👋我的名字是d0zingcat，目前就职于[莉莉丝游戏](https://www.lilithgames.com/cn/?nlr=1)，是个搬砖的码农，欢迎小伙伴拿简历来砸我。写过Java、Python，Golang，Erlang, Elixir, Bash Shell ,也有计划学习一下Rust、Lua、JS。也许在未来的某天我会试着更新这个"关于我"页面。
+你好👋我的名字是d0zingcat，目前就职于[莉莉丝游戏](https://www.lilithgames.com/cn/?nlr=1)，是个蒟蒻的搬砖工。工作需要写过Java、Python，Golang，Erlang, Elixir，对语言没有偏见，但是会有自己的偏好，总是在失去写某一门语言的机会之后开始追悔莫及。目前也有计划学习一下Rust、Lua、JS，也许在未来的某天我会试着更新这个"关于我"页面。
