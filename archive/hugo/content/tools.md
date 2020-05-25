@@ -34,3 +34,9 @@ menu = "main"
 ### iOS
 
 - [Infuse](https://firecore.com/infuse)：视频播放
+
+## 网站
+
+### 下载
+
+- [Old version](http://www.oldversion.com)：下载软件历史版本

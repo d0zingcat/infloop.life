@@ -52,6 +52,8 @@ Recently, I've been...
 
 | Name | Progress  |
 | --- | --- |
+| [獵魔士](https://www.netflix.com/hk/title/80189685) |
+| [](https://baike.baidu.com/item/罗小黑战记/22902442) |
 | [罗小黑战记](https://baike.baidu.com/item/罗小黑战记/22902442) |
 | [哪吒之魔童降世](https://movie.douban.com/subject/26794435//) |
 | [中国机长](https://movie.douban.com/subject/30295905/) |

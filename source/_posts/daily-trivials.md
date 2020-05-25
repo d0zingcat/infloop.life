@@ -8,6 +8,12 @@ draft: false
 
 这篇文章讲用于记录我日常遇到的一些问题的解决和一些小的hacks。话不多说，let's begin.
 
+
+- start zookeeper error: ERROR Unexpected exception, exiting abnormally (org.apache.zookeeper.server.ZooKeeperServerMain)
+java.io.IOException: No snapshot found, but there are log entries. Something is broken!
+
+手动删除掉zookeeper下的数据后可以正常启动 `rm -rf /usr/local/var/lib/zookeeper`
+
 - nginx测试配置是否正确
 
 The -c flag indicates a certain configuration file will follow; the -t flag tells Nginx to test our configuration. 
@@ -38,9 +44,9 @@ chmod 777 /tmp/.X11-unix/X1
    brew install kafka
 ```
 	To have launchd start kafka now and restart at login:
-	`brew services start kafka`
+	brew services start kafka
 	Or, if you don’t want/need a background service you can just run:
-	`zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties && kafka-server-start /usr/local/etc/kafka/server.properties`
+	zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties && kafka-server-start /usr/local/etc/kafka/server.properties
 
 - 误删macOS唯一一个administrator的用户admin组，不小心使用了`sudo dseditgroup -o edit -a $(whoami) -t user admin` （本意只是想从wheel组里面删掉）命令把系统上唯一一个具有超级管理员权限的用户的组权限给删了，导致使用sudo命令会提示 `$(user) not in sudoers file, this incident will be reported....`
 
