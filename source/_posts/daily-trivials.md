@@ -46,7 +46,8 @@ chmod 777 /tmp/.X11-unix/X1
 	To have launchd start kafka now and restart at login:
 	brew services start kafka
 	Or, if you don’t want/need a background service you can just run:
-	zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties && kafka-server-start /usr/local/etc/kafka/server.properties
+	zookeeper-server-start /usr/local/etc/kafka/zookeeper.properties
+	kafka-server-start /usr/local/etc/kafka/server.properties
 
 - 误删macOS唯一一个administrator的用户admin组，不小心使用了`sudo dseditgroup -o edit -a $(whoami) -t user admin` （本意只是想从wheel组里面删掉）命令把系统上唯一一个具有超级管理员权限的用户的组权限给删了，导致使用sudo命令会提示 `$(user) not in sudoers file, this incident will be reported....`
 
