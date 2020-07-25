@@ -49,12 +49,12 @@ Recently, I've been...
 | [獵魔士](https://www.netflix.com/hk/title/80189685)| &#10003; |
 | [利刃出鞘 Knives Out](https://movie.douban.com/subject/30318116/?from=showing)| &#10003; |
 | [可汗学院公开课：语法](http://open.163.com/newview/movie/courseintro?newurl=%2Fspecial%2FKhan%2Fgrammar.html)| pending|
-| [伍六七之最强发型师]() | pending|
+| [伍六七之最强发型师]() | &#10003; |
 | [刺客伍六七 第一季 ](https://movie.douban.com/subject/27624762/)| &#10003; |
 | [七个世界，一个星球](https://zh.wikipedia.org/wiki/七个世界，一个星球)|&#10003;|
-| [罗小黑战记](https://baike.baidu.com/item/罗小黑战记/22902442) |
-| [哪吒之魔童降世](https://movie.douban.com/subject/26794435//) |
-| [中国机长](https://movie.douban.com/subject/30295905/) |
+| [罗小黑战记](https://baike.baidu.com/item/罗小黑战记/22902442) |&#10003;|
+| [哪吒之魔童降世](https://movie.douban.com/subject/26794435//) |&#10003;|
+| [中国机长](https://movie.douban.com/subject/30295905/) |&#10003;|
 | [The lion king](https://www.rottentomatoes.com/m/the_lion_king_2019) | &#10003; |
 | [高级语言程序设计（Python）CAP][15] | 50% |
 | [TED Talk of the Week: Nature. Beauty. Gratitude][16] |  &#10003; |
